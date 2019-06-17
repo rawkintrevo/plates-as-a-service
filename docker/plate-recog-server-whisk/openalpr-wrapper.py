@@ -24,17 +24,40 @@ from json import loads
 ## parse out args
 ## save image to disk
 
+import traceback
 
-params = loads(sys.argv[1])
-img_url = params['url']
-n = params.get("n", 1)
-# {"url":"https://github.com/rawkintrevo/plates-as-a-service/raw/master/test-data/s16-8319.jpg"}
-fname = img_url.split("/")[-1]
+def main():
+    try:
+        params = loads(sys.argv[1])
+    except:
+        output = {
+            "msg" : "For some reason there was an error on 28...",
+            'params' : sys.argv,
+            "traceback" : traceback.format_tb(sys.exc_info()[2])
+        }
+        print(output)
+        return 1
 
-r = get(img_url)
-open(fname, 'wb').write(r.content)
 
-## run this
-foo = subprocess.check_output(['alpr', '-n', '1', "-j", fname])
-print(foo)
-## package up output
+    img_url = params['url']
+    print("Got url: %s" % img_url)
+    n = params.get("n", 1)
+    # params = {"url":"https://github.com/rawkintrevo/plates-as-a-service/raw/master/test-data/s16-8319.jpg"}
+    fname = img_url.split("/")[-1]
+
+    r = get(img_url)
+    shh = open(fname, 'wb').write(r.content)
+    print("Downloaded the file...")
+    ## run this
+
+    foo = subprocess.check_output(['alpr', '-n', '%i' % n, "-j", fname])
+    print("ran the thing...")
+    print(foo.decode().replace("\n",""))
+
+
+    ## package up output
+
+if __name__ == "__main__":
+    main()
+
+'{\"url\":', '\"https://github.com/rawkintrevo/plates-as-a-service/raw/master/test-data/s16-8319.jpg\"}'

@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-docker build -t rawkintrevo/openalpr-whisk .
+docker build -t rawkintrevo/opencv-whisk .

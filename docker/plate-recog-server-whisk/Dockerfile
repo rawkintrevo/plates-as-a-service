@@ -23,6 +23,7 @@ ENV FLASK_PROXY_PORT 8080
 ### Add source file(s)
 ADD openalpr-wrapper.py /action/openalpr-wrapper.py
 ADD exec /action/exec
-RUN chmod +x /action/exec
+RUN chmod +x /action/exec \
+	&& pip3 install requests
 
 CMD ["/bin/bash", "-c", "cd actionProxy && python -u actionproxy.py"]

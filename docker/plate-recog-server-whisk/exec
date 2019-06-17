@@ -18,4 +18,4 @@
 #under the License.
 
 echo "Scanning image at ${1} for license plates"
-python3 openalpr-wrapper.py $1
+python3 /action/openalpr-wrapper.py "${1}"
