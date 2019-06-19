@@ -60,4 +60,4 @@ def main():
 if __name__ == "__main__":
     main()
 
-'{\"url\":', '\"https://github.com/rawkintrevo/plates-as-a-service/raw/master/test-data/s16-8319.jpg\"}'
+# Example URL '{\"url\":', '\"https://github.com/rawkintrevo/plates-as-a-service/raw/master/test-data/s16-8319.jpg\"}'
